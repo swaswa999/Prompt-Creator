@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SimplyPromps</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    </head>
+    <header>
+        <p>Simply Prompt</p>
+    </header>
+    <body>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <div class="container">
+            <div class="input">
+                <h2>Input</h1>
+                <form action="/" method="post">
+                    <label for="role">You are a...</label>
+                     <input class="inputbox" type="role" id="role" name="role" autocomplete="off" placeholder="grade 11 Honor Student" value="{{role}}">
+
+                     <label for="task">I need you... </label>
+                     <textarea class="inputbox" type="task" id="task" name="task" autocomplete="off" placeholder="write a 4 page essay about why GPT is bad for essays">{{task}}</textarea>
+
+                     <label for="whatfor">To or For... </label>
+                     <textarea class="inputbox" type="whatfor" id="whatfor" name="whatfor" autocomplete="off" placeholder="AP english class">{{whatfor}}</textarea>
+
+                     <label for="please">Please... </label>
+                     <textarea class="inputbox" type="please" id="please" name="please" autocomplete="off" placeholder="make sure there are no grammatical errors">{{please}}</textarea>
+
+                     <label for="example">Here is an example... </label>
+                     <textarea class="inputbox" type="example" id="example" name="example" autocomplete="off">{{example}}</textarea>
+
+                     <label for="text">Use the text... </label>
+                     <textarea class="inputbox" type="text" id="text" name="text" autocomplete="off" placeholder="Any text you want to GPT to use as a source">{{text}}</textarea>
+
+                     <label for="outputformat">Output should be... </label>
+                     <textarea class="inputbox" type="outputformat" id="outputformat" name="outputformat" autocomplete="off" placeholder="2 pages, 1,000 words and 5 pharagraph essay format">{{outputformat}}</textarea>
+
+                     <input type="submit" value="Create prompt" id="submit">
+                     <input type="reset" value="Reset" id="reset">
+                </form>
+            </div>
+
+            <div class="output">
+                <h2>Output</h1>
+                <div class="outputbox">
+                    {% if generated_text == 'None' %}
+                    <p class="outputtext">Nothing yet :D</p>
+                    {%else%}
+                    <p class="outputtext" id="generatedText">{{generated_text}} {{text}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+</html>
