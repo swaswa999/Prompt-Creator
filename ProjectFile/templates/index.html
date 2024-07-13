@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DataManagement</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="graphs">
+            <h2>Graphs</h2>
+            <a class="links" href="{{ url_for('uploaded') }}">View Monthly Uploads</a>
+            <a class="links" href="{{ url_for('upload') }}">Upload...</a>
+        </div>
+        <div class="dataGPT">
+            <h2>DataGPT</h2>
+            <div class="datagptBOX">
+
+                <div id="GptOutput">
+                    
+                    {% if GptOutput == None %}
+                        <p>GptOutput: {{GptOutput}}</p>
+                    {% else %}
+                    <p></p>
+                    {% endif %}
+                </div>
+                <div id="query">
+
+                    <form method="POST" id="querybox">
+                        <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off">
+                        <input id="submit" type="submit" value="Submit">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+html {
+    background-color: rgb(14, 17, 23);
+    color: rgb(250, 250, 250);
+    font-family: sans-serif;
+    font-size: 16px;
+    cursor: default;
+}
+
+header {
+    text-align: left;
+    padding-right: 10px;
+}
+
+h2 {
+    width: 100%;
+}
+
+h2:hover {
+    cursor: default;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2% 2%;
+    align-items: flex-start;
+}
+
+.graphs, .dataGPT {
+    width: 50%;
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.dataGPT {
+    padding-left: 4%;
+}
+
+form {
+    width: 96%;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.datagptBOX {
+    width: 100%;
+    height: 670px;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: rgb(26, 28, 36);
+    align-self: flex-start;
+    padding: 10px;
+}
+
+#GptOutput {
+    width: 100%;
+    height: 640px; /* Fixed height for scrollability */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    background-color: rgb(26, 28, 36);
+    border: 2px solid rgb(26, 28, 36);
+    border-radius: 5px;
+
+}
+
+#query {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 25px;
+    background-color: rgb(14, 17, 23);
+
+}
+
+#queryelement, #submit {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+#queryelement {
+    border: 2px solid rgb(26, 28, 36);
+    background-color: rgb(14, 17, 23);
+    border-radius: 25px;
+    color: rgb(250, 250, 250);
+    padding-left: 10px;
+    outline: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 87%;
+}
+
+#submit {
+    background-color: rgb(14, 17, 23);
+    border: 0px;
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+}
+
+#submit:hover{
+    color: rgb(199, 199, 199);
+}
+
+.links {
+    background-color: rgb(14, 17, 23);
+    color: rgb(250, 250, 250);
+    font-family: sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.links:hover{
+    color: rgb(199, 199, 199);
+}
+
+/*UPLOAD CSS*/
+
+#uploadDocContainer{
+    width: 50%;
+    height: 650px;
+    margin: auto;
+    margin-top: 100px;
+    background-color: rgb(26, 28, 36);
+    border-radius: 15px;
+
+}
+
+#formTitle{
+    text-align: center;
+    padding: 20px;
+}
+
+
+#uploader{
+    width: 100%;
+    margin: 10px;
+    font-size: large;
+}
+
+#uploader:hover{
+    color: rgb(199, 199, 199);
+    cursor: pointer;
+}
+
+#file{
+    display: none;
+}
+
+#datasetter{
+    width: 100%;
+    margin: 10px;
+    font-size: large;
+}
+
+#submitUpload{
+    background-color: white;
+    border: 0px;
+    border-radius: 25px;
+    padding: 5px;
+    text-align: center;
+    margin-left: 10px;
+    font-size: medium;
+    cursor: pointer;
+}
+
+#submitUpload:hover{
+    background-color: rgb(199, 199, 199);
+}
+
+#month{
+    color: white;
+    background-color: rgb(26, 28, 36);
+    border: 0px;
+}
+
+#month:hover{
+    color: rgb(199, 199, 199);
+}
+
+#home{
+    background-color: white;
+    border: 0px;
+    border-radius: 25px;
+    padding: 5px;
+    text-align: center;
+    margin-left: 10px;
+    text-decoration: none;
+    color: rgb(14, 17, 23);
+}
+
+#home:hover{
+    background-color: rgb(199, 199, 199);
+}

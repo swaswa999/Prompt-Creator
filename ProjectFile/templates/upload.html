@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+
+    <div id="uploadDocContainer">
+        <h1 id="formTitle">Upload a new Document</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label id="uploader" for="file" >Click to Upload</label>
+
+            <div id="datasetter">
+            <label id="uploaderDate" for="month">File Date (month and year):</label>
+            <input type="month" id="month" name="month">
+            </div>
+
+            <input id="submitUpload" type="submit" value="Submit">
+
+            <input id="file" type="file" name="files" required>
+            <a id="home" href="{{url_for('index')}}">Go Home</a>
+        </form>
+    </div>
+</body>
+</html>
