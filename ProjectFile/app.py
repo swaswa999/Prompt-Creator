@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from openai import OpenAI
+from cleanData import cleanData
 
 app = Flask(__name__)
 
@@ -26,9 +27,8 @@ def upload():
         file = request.files['files']
         filename = request.form['month']
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        cleanData(filename)
 
-
-        
     if file != None:
         return redirect('/')
     else:
