@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from openai import OpenAI
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def upload():
 
         
     if file != None:
-        return render_template('index.html')
+        return redirect('/')
     else:
         return render_template('upload.html')
 
