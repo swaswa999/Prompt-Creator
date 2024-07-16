@@ -4,6 +4,7 @@ if ( window.history.replaceState ) {
 }
 
 function aAlert(){
-  alert("Success, the file was uploaded and will be in processing soon")
+  alert("Success, the file was uploaded and will be in processing soon");
 }
+
 

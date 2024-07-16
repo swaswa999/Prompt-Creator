@@ -7,30 +7,44 @@
 <body>
     <div class="container">
         <div class="graphs">
-            <h2>Graphs</h2>
+            <h2>Graphs:</h2>
             <a class="links" href="{{ url_for('uploaded') }}">View Monthly Uploads</a>
             <a class="links" href="{{ url_for('upload') }}">Upload...</a>
+            <div id="graphsContainer">
+
+            </div>
+            <form method="POST" id="fromToDate">
+                <input type="hidden" name="form_type" value="date_form">
+                <label id="fromDate" for="from">From (month and year): </label>
+                <input type="month" id="from" name="from" required>
+
+                <label id="toDate" for="to">To: </label>
+                <input type="month" id="to" name="to" required>
+
+                <input id="toFromSubmit" type="submit" value="Submit">
+            </form>
         </div>
         <div class="dataGPT">
-            <h2>DataGPT</h2>
+            {% if toDate %}
+                <h2>DataGPT: {{fromDate}} {{toDate}}</h2>
+            {% else %}
+                <h2>DataGPT:</h2>
+            {% endif %}
             <div class="datagptBOX">
-
                 <div id="GptOutput">
-                    
-                    {% if GptOutput == None %}
+                    {% if GptOutput %}
                         <p>GptOutput: {{GptOutput}}</p>
                     {% else %}
-                    <p></p>
+                        <p></p>
                     {% endif %}
                 </div>
                 <div id="query">
-
                     <form method="POST" id="querybox">
-                        <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off">
+                        <input type="hidden" name="form_type" value="query_form">
+                        <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off" required>
                         <input id="submit" type="submit" value="Submit">
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
