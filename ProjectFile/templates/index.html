@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <div class="container">
         <div class="graphs">
             <h2>Graphs:</h2>
@@ -13,41 +14,39 @@
             <div id="graphsContainer">
 
             </div>
-            <form method="POST" id="fromToDate">
+            <form id="fromToDate">
                 <input type="hidden" name="form_type" value="date_form">
                 <label id="fromDate" for="from">From (month and year): </label>
-                <input type="month" id="from" name="from" required>
+                <input type="month" id="from" name="from" max="2099-12" min="1980-01" required value="{{fromDate}}">
 
                 <label id="toDate" for="to">To: </label>
-                <input type="month" id="to" name="to" required>
+                <input type="month" id="to" name="to" max="2099-12" min="1980-01" required value="{{toDate}}">
 
-                <input id="toFromSubmit" type="submit" value="Submit">
+                <input id="toFromSubmit" type="submit" onclick="saveDate(event)">
             </form>
         </div>
         <div class="dataGPT">
-            {% if toDate %}
-                <h2>DataGPT: {{fromDate}} {{toDate}}</h2>
-            {% else %}
-                <h2>DataGPT:</h2>
-            {% endif %}
+            <h2>DataGPT:</h2>
             <div class="datagptBOX">
                 <div id="GptOutput">
                     {% if GptOutput %}
-                        <p>GptOutput: {{GptOutput}}</p>
+                        <p>{{ GptOutput|safe }}</p>
                     {% else %}
                         <p></p>
                     {% endif %}
                 </div>
                 <div id="query">
                     <form method="POST" id="querybox">
-                        <input type="hidden" name="form_type" value="query_form">
+
+                        <input type="month" id="fromHidden" name="fromHidden" >
+                        <input type="month" id="toHidden" name="toHidden" >
+
                         <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off" required>
-                        <input id="submit" type="submit" value="Submit">
+                        <input onclick="refreshDate()" id="submit" type="submit" value="Submit" >
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

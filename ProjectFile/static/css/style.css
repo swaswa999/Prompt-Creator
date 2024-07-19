@@ -245,3 +245,66 @@ form {
 
 /*CHATGPT BOX*/
 
+#fromHidden, #toHidden{
+    visibility: hidden;
+    padding: 0;
+    height: 0;
+    margin: 0;
+}
+
+/* UPLOADED PAGE */
+
+#uploadedPage{
+        background-color: rgb(14, 17, 23);
+        color: rgb(250, 250, 250);
+        font-family: sans-serif;
+        font-size: 16px;
+        cursor: default;
+        overflow: auto;
+        overflow-x: hidden;
+
+
+}
+
+#head{
+    width: 100%;
+    margin-bottom: 50px;
+
+}
+#documentContainer {
+    width: 100%;
+    height: 700px;
+    border: 2px solid white;
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax for desired size */
+    grid-auto-rows: 1fr;
+    gap: 0; /* Set gap to 0 or a small value to reduce empty space */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.documentView {
+    background-color: lightgray; /* Example background color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd; /* Optional: border for visual separation */
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.documentView img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure image covers the square */
+}
+
+.documentView p {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

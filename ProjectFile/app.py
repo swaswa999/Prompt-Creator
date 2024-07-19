@@ -15,26 +15,11 @@ def index():
     GptOutput = None
     fromDate = None
     toDate = None
-
     if request.method == 'POST':
-        form_type = request.form.get('form_type')
-        if form_type == 'date_form':
-            fromDate = request.form['from']
-            toDate = request.form['to']
-            session['fromDate'] = fromDate
-            session['toDate'] = toDate
-            print(fromDate, toDate)
-        elif form_type == 'query_form' and 'fromDate' in session and 'toDate' in session:
-            question = request.form['queryelement']
-            fromDate = session['fromDate']
-            toDate = session['toDate']
-            GptOutput = askGPT(question, fromDate, toDate)
-            session.pop('fromDate', None)
-            session.pop('toDate', None)
-        return redirect(url_for('index'))
-
-    fromDate = session.get('fromDate')
-    toDate = session.get('toDate')
+        fromDate = request.form['fromHidden']
+        toDate = request.form['toHidden']
+        userQuestion = request.form['queryelement']
+        GptOutput = askGPT(userQuestion, fromDate, toDate)
     return render_template('index.html', GptOutput=GptOutput, fromDate=fromDate, toDate=toDate)
 
 
@@ -55,7 +40,12 @@ def upload():
 
 @app.route('/uploaded')
 def uploaded():
-    return render_template('uploaded.html')
+    csvFileList = []
+    unsortedList = sorted(os.listdir('data/'))
+    for n in range(len(unsortedList)):
+        if unsortedList[n].endswith('.csv'):
+            csvFileList.append(unsortedList[n])    
+    return render_template('uploaded.html', csvFileList=csvFileList)
 
 
 
