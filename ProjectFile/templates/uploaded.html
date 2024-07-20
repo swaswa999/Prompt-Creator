@@ -9,14 +9,16 @@
 <header id="head">
     <h1>Past Uploaded</h1>
     <a class="links" href="{{ url_for('upload') }}" id="uploadedPageLink">Upload...</a>
+    <a class="links" href="{{ url_for('index') }}">Home...</a>
 </header>
 <body>
     <div id="documentContainer">
-    <!-- {% for i in csvFileList %} -->
+    {% for i in csvFileList %}
     <div class="documentView">
+    <img src="static/img/folder.png" width="70" height="70">
     <p>{{ i }}</p>
     </div>
-    <!-- {% endfor %} -->
+    {% endfor %}
     </div>
 </body>
 </html>

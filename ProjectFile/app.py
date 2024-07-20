@@ -44,7 +44,7 @@ def uploaded():
     unsortedList = sorted(os.listdir('data/'))
     for n in range(len(unsortedList)):
         if unsortedList[n].endswith('.csv'):
-            csvFileList.append(unsortedList[n])    
+            csvFileList.append(unsortedList[n])
     return render_template('uploaded.html', csvFileList=csvFileList)
 
 

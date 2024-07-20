@@ -3,6 +3,9 @@ import pandas as pd
 from datetime import datetime
 from openai import OpenAI
 
+unsortedList = os.listdir('data/')
+
+
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 def addToConvo(question, fromDate, toDate, generated_text):
@@ -40,7 +43,7 @@ def cvsToString(fileName):
     data_str = df.to_string()
     return data_str
 
-def allData(fromDate, toDate):
+def allData(fromDate, toDate, question):
     fileName = None
     unflilterd_dir_list = []
     unflilterd_list = []
@@ -63,7 +66,11 @@ def allData(fromDate, toDate):
     return dataString
 
 def askGPT(question, fromDate, toDate):
-    data = allData(fromDate, toDate)
+    dome_data_str = None
+    if "dome" in question.lower():
+        ddf = pd.read_csv(f'data/DOME.csv')
+        dome_data_str = ddf.to_string()
+    data = allData(fromDate, toDate, question)
     client = OpenAI(api_key=OPENAI_API_KEY)
     pastConvo = accessConvo()
     if data != None and question.lower()!= 'clear':
@@ -91,7 +98,7 @@ def askGPT(question, fromDate, toDate):
                         Output has to be in a HTML format, and your responce will go inside an already existing div so imagine you are writing it strait into a div inside of a html page. 
                         Do not type ### at the begining of your answer or incase your answer with the ```'s or ~~~'s
                 '''},
-                {"role": "user", "content": f"```ALL provided Data: {data}```"}
+                {"role": "user", "content": f"```ALL provided Data: {data} DOME DATA IF INCLUDED: {dome_data_str}```"}
                 ])
             generated_text = client.choices[0].message.content
             addToConvo(question, fromDate, toDate, generated_text)
