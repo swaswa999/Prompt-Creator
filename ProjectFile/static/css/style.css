@@ -37,6 +37,10 @@ h2:hover {
     flex-wrap: wrap;
 }
 
+#graphParentContainer{
+    position: relative;
+}
+
 .dataGPT {
     padding-left: 4%;
 }
@@ -212,8 +216,10 @@ form {
     background-color: rgb(26, 28, 36);
     border-radius: 25px;
     padding: 10px;
+    padding-top: 0px;
     font-size: medium;
     text-align: center;
+    margin-top: 70px;
 }
 
 #fromDate, #toDate{
@@ -222,7 +228,7 @@ form {
 }
 
 #toFromSubmit{
-    background-color: rgb(26, 28, 36);
+    background-color: #1a1c24;
     border: 0px;
     color: white;
     padding-top: 8px;
@@ -273,12 +279,11 @@ form {
 }
 #documentContainer {
     width: 100%;
-    /* height: 700px; */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax for desired size */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
     grid-auto-rows: 1fr;
-    gap: 0; /* Set gap to 0 or a small value to reduce empty space */
-    overflow: hidden; /* Prevent overflow */
+    gap: 0; 
+    overflow: hidden;
     margin-left: 0;
     padding-left: 10px;
     padding-right: 0;
@@ -286,4 +291,72 @@ form {
 
 #documentView{
     padding: 0;
+}
+
+/* GRAPHS */
+
+#headerGraph{
+    width: 100%;
+}
+
+#graphsContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.graphs{
+    flex: 1 1 50%; 
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.graphLable{
+    text-align: center;
+    width: 100%;
+    color: grey;
+}
+
+#leftGraphs{
+    width: 50%;
+    height: 50%;
+}
+
+#rightGraphs{
+    width: 50%;
+    height: 50%;
+}
+
+#botomLeftGraphs{
+    width: 50%;
+    height: 40%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#botomRightGraphs{
+    width: 50%;
+    height: 40%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#graphDOMData{
+    display: none;
+}
+
+#dateForm{
+    background-color: rgb(26, 28, 36);
+    border-radius: 25px;
+    padding: 10px;
+    border-color: rgb(26, 28, 35);
+    margin-top: 70px;
+}
+
+#bottomLeftLable{
+    background-color:  rgb(14, 17, 23);
+    border-color:  rgb(14, 17, 23);
+    width: 60%;
+    margin-left: 20%;
 }

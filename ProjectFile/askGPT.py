@@ -1,23 +1,27 @@
 import os
-import pandas as pd
-from datetime import datetime
-from openai import OpenAI
+import pandas as pd #library for data managment
+from datetime import datetime #library for handeling what csv files to pick
+from openai import OpenAI #library for GPT
 
 unsortedList = os.listdir('data/')
 
-
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+#Open API Key linked to .env file
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY') 
 
 def addToConvo(question, fromDate, toDate, generated_text):
     f = open("ProjectFile/tempConvoHistory.txt", "a")
     f.write(f"{question}___{fromDate}___{toDate}___{generated_text}\n")
     f.close()
+
 def clearConvo():
     open('ProjectFile/tempConvoHistory.txt', 'w').close()
+
 def accessConvo():
     f = open("ProjectFile/tempConvoHistory.txt", "r")
     convo = f.read()
+    f.close
     return convo
+
 
 def cleanListRange(fromDate, toDate, unflilterd_dir_list):
     start = datetime.strptime(fromDate, "%Y-%m")
@@ -73,7 +77,7 @@ def askGPT(question, fromDate, toDate):
     data = allData(fromDate, toDate, question)
     client = OpenAI(api_key=OPENAI_API_KEY)
     pastConvo = accessConvo()
-    if data != None and question.lower()!= 'clear':
+    if data != None and question.lower()!= 'clear' and question != None and question !='':
         try:
             client = client.chat.completions.create(model="gpt-4o-mini",
                 messages=[
@@ -82,6 +86,7 @@ def askGPT(question, fromDate, toDate):
 
                     Data Analysis:
                         Carefully examine the data provided within the ``` marks.
+                        If a number is missing assume that it was 0
                         Identify key financial metrics, trends, and insights relevant to the question.
                     Question Response:
                         Answer the question clearly and concisely based on the analyzed data.
@@ -108,6 +113,6 @@ def askGPT(question, fromDate, toDate):
         clearConvo()
         return "Convo Cleared, Reload :D"
     else:
-        return "ERROR DATA NOT LINKED"
+        return "Ready For Convo"
     return generated_text
 

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, jsonify
 from openai import OpenAI
 from cleanData import cleanData
 from askGPT import askGPT
@@ -20,8 +20,23 @@ def index():
         toDate = request.form['toHidden']
         userQuestion = request.form['queryelement']
         GptOutput = askGPT(userQuestion, fromDate, toDate)
+
     return render_template('index.html', GptOutput=GptOutput, fromDate=fromDate, toDate=toDate)
 
+@app.route("/fetch_data", methods=['GET'])
+def fetch_data():
+    fromDate = request.args.get('from')
+    toDate = request.args.get('to')
+    # Fetch your data based on fromDate and toDate
+    pieChart = [200, 200, 150, 175, 125, 300, 250, 275, 225]
+    expenseTrend = [90, 180, 140, 160, 120, 280, 230, 260, 210]
+    CostTrack = [110, 220, 160, 190, 130, 320, 270, 290, 240]
+    data = {
+        "pieChart": pieChart,
+        "expenseTrend": expenseTrend,
+        "CostTrack": CostTrack
+    }
+    return jsonify(data)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -46,9 +61,6 @@ def uploaded():
         if unsortedList[n].endswith('.csv'):
             csvFileList.append(unsortedList[n])
     return render_template('uploaded.html', csvFileList=csvFileList)
-
-
-
 
 if __name__ == '__main__':
     host = os.environ.get('FLASK_HOST', '0.0.0.0')

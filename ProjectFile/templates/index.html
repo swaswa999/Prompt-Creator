@@ -3,26 +3,55 @@
 <head>
     <title>DataManagement</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <div class="container">
-        <div class="graphs">
-            <h2>Graphs:</h2>
-            <a class="links" href="{{ url_for('uploaded') }}">View Monthly Uploads</a>
-            <a class="links" href="{{ url_for('upload') }}">Upload...</a>
-            <div id="graphsContainer">
-
+        <div class="graphs" id="graphParentContainer">
+            <div id="headerGraph">
+                <h2>Graphs:</h2>
+                <a class="links" href="{{ url_for('uploaded') }}">View Monthly Uploads</a>
+                <a class="links" href="{{ url_for('upload') }}">Upload...</a>
+                <p id="endflex"></p>
             </div>
-            <form id="fromToDate">
-                <input type="hidden" name="form_type" value="date_form">
+            <div id="graphsContainer">
+                <div class="graphs" id="leftGraphs">
+                      <div>
+                        <canvas id="myChart"></canvas>
+                      </div>
+                      <p class="graphLable">Expense Trend</p>
+                </div>
+                <div class="graphs" id="rightGraphs">
+                    <div>
+                        <canvas id="pieChart"></canvas>
+                      </div>
+                      <p class="graphLable">Expense Category Breakdown</p>
+                </div>
+                <div class="graphs" id="bottomLeftGraphs">
+                    <div>
+                        <canvas id="trackCost"></canvas>
+                    </div>
+                        <select name="pickACost" class="graphLable" id="bottomLeftLable">
+                        <option value="mortgagePayments">Mortgage Payments</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="housekeeping">Housekeeping</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="online">Online</option>
+                        <option value="property">Property</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="misc">Misc</option>
+                        </select>
+                </div>
+                <div class="graphs" id="bottomRightGraphs"></div>
+            </div>
+            <form id="dateForm">
                 <label id="fromDate" for="from">From (month and year): </label>
                 <input type="month" id="from" name="from" max="2099-12" min="1980-01" required value="{{fromDate}}">
-
                 <label id="toDate" for="to">To: </label>
                 <input type="month" id="to" name="to" max="2099-12" min="1980-01" required value="{{toDate}}">
-
-                <input id="toFromSubmit" type="submit" onclick="saveDate(event)">
+                <button type="submit" id="month">Submit</button>
             </form>
         </div>
         <div class="dataGPT">
@@ -37,12 +66,10 @@
                 </div>
                 <div id="query">
                     <form method="POST" id="querybox">
-
-                        <input type="month" id="fromHidden" name="fromHidden" >
-                        <input type="month" id="toHidden" name="toHidden" >
-
-                        <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off" required>
-                        <input onclick="refreshDate()" id="submit" type="submit" value="Submit" >
+                        <input type="month" id="fromHidden" name="fromHidden">
+                        <input type="month" id="toHidden" name="toHidden">
+                        <input type="text" id="queryelement" placeholder="Query..." name="queryelement" autocomplete="off">
+                        <button type="submit" id="submit" onclick="refreshDate()">Submit</button>
                     </form>
                 </div>
             </div>
